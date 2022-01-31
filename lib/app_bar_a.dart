@@ -9,10 +9,15 @@ class AppBarA extends StatefulWidget {
 
 class _AppBarAState extends State<AppBarA> {
 
+
   @override
 
   Widget build(BuildContext context) {
+
+
     return MaterialApp(
+
+
       //home:const
       initialRoute: '/',
       routes: {
@@ -20,14 +25,29 @@ class _AppBarAState extends State<AppBarA> {
         'contacts': (context)=>SecondScreen(),
         "plugins":(context)=>TherdScreen(),
       },
+       theme: ThemeData(
+         fontFamily: "Georgia",
+                           drawerTheme: DrawerThemeData(backgroundColor: Colors.amberAccent),
+
+                           scaffoldBackgroundColor: Colors.greenAccent,
+                  colorScheme: ColorScheme.fromSwatch(
+           brightness: Brightness.light,
+         ),
+
+         textTheme: TextTheme(
+           subtitle1: TextStyle(fontSize: 22.0,fontWeight: FontWeight.bold),
+           bodyText1: TextStyle(fontSize: 15.0,fontFamily: 'Hind'),
+
+         )
+       )
 
     );
 
   }
 }
 Widget navDrawer( context)=>Drawer(
-  child: ListView(padding: EdgeInsets.zero,children: [
-    DrawerHeader (decoration: const BoxDecoration(color:Colors.blue ),
+  child: ListView(padding: EdgeInsets.zero, children: [
+    DrawerHeader (decoration: const BoxDecoration(),
 
         child: SizedBox(
           height: 200,
@@ -41,14 +61,15 @@ Widget navDrawer( context)=>Drawer(
                 child: Image.network ('https://www.agiratech.com/wp-content/uploads/2020/08/flutter.png'),
               ),
 
-              Text('Навигация во Flutter')
+              Text('Навигация во Flutter', style:Theme.of(context).textTheme.bodyText1)
+
             ],
           ),
         )
     ),
     ListTile (
       leading: Icon(Icons.one_k),
-      title: Text('Контакты'),
+      title: Text('Контакты',style:Theme.of(context).textTheme.bodyText1),
       onTap: (){Navigator.pushNamed(context, '/');
 
       },
@@ -80,7 +101,7 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar (title: Text('Контакты')),
+      appBar: AppBar (title: Text('Контакты', style:Theme.of(context).textTheme.subtitle1)),
       drawer: navDrawer(context),
       body: const Center(
         child: Text('Контакты'),
@@ -94,7 +115,7 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Каталог')),
+      appBar: AppBar(title: Text('Каталог', style:Theme.of(context).textTheme.subtitle1)),
       drawer: navDrawer(context),
       body: const Center(
         child: Text('Каталог'),
@@ -108,7 +129,7 @@ class TherdScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar (title: Text('Меню настроек')),
+      appBar: AppBar (title: Text('Меню настроек', style:Theme.of(context).textTheme.subtitle1)),
       drawer: navDrawer(context),
       body: const Center(
         child: Text('Меню настроек'),
